@@ -14,3 +14,11 @@ TestProj/.vs/TestProj/DesignTimeBuild/.dtbcache
 TestProj/.vs/TestProj/v16/Server/sqlite3/storage.ide
 
 TestProj/.vs/TestProj/config/applicationhost.config
+
+TestProj/TestProj/bin/Debug/netcoreapp3.1/TestProj.dll
+
+TestProj/TestProj/bin/Debug/netcoreapp3.1/TestProj.pdb
+
+TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.dll
+
+TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.pdb
