@@ -8520,11 +8520,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\TestProj\\TestProj\\TestProj.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj\\TestProj.csproj",
       "projectName": "TestProj",
-      "projectPath": "C:\\Users\\User\\Desktop\\TestProj\\TestProj\\TestProj.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj\\TestProj.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\TestProj\\TestProj\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
