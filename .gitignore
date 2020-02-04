@@ -12,3 +12,5 @@ TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.csprojAssemblyReference.cache
 TestProj/.vs/TestProj/DesignTimeBuild/.dtbcache
 
 TestProj/.vs/TestProj/v16/Server/sqlite3/storage.ide
+
+TestProj/.vs/TestProj/config/applicationhost.config
