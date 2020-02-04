@@ -8,3 +8,7 @@ TestProj/.vs/TestProj/v16/Server/sqlite3/storage.ide-wal
 TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.csproj.FileListAbsolute.txt
 
 TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.csprojAssemblyReference.cache
+
+TestProj/.vs/TestProj/DesignTimeBuild/.dtbcache
+
+TestProj/.vs/TestProj/v16/Server/sqlite3/storage.ide
