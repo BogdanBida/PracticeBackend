@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace TestProj.Models
 {
@@ -42,7 +43,7 @@ namespace TestProj.Models
         public ProductModel Update(ProductModel modelChanges)
         {
             var model = dbContext.Products.Attach(modelChanges);
-            model.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            model.State = EntityState.Modified;
             dbContext.SaveChanges();
             return modelChanges;
         }

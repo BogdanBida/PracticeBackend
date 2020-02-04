@@ -16,13 +16,13 @@ namespace TestProj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppUserController : ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly AppSettings appSettings;
 
-        public AppUserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IOptions<AppSettings> appSettings)
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IOptions<AppSettings> appSettings)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -31,8 +31,8 @@ namespace TestProj.Controllers
 
         [HttpPost]
         [Route("Register")]
-        //POST: api/AppUser/Register
-        public async Task<Object> PostAppUser(AppUserModel model)
+        //POST: api/Auth/Register
+        public async Task<Object> RegisterUser(RegisterModel model)
         {
             var appUser = new AppUser()
             {
@@ -54,8 +54,8 @@ namespace TestProj.Controllers
 
         [HttpPost]
         [Route("Login")]
-        //POST: api/AppUser/Login
-        public async Task<IActionResult> Login(LoginModel model)
+        //POST: api/Auth/Login
+        public async Task<IActionResult> LoginUser(LoginModel model)
         {
             var user = await userManager.FindByNameAsync(model.UserName);
             if(user !=null && await userManager.CheckPasswordAsync(user, model.Password))
@@ -67,7 +67,8 @@ namespace TestProj.Controllers
                         new Claim("Id", user.Id.ToString())
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Jwt_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(appSettings.Jwt_Secret)), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);

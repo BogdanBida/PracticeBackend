@@ -1,6 +1,6 @@
 ﻿namespace TestProj.Models
 {
-    public class AppUserModel
+    public class RegisterModel
     {
         public string UserName { get; set; }
         public string Email { get; set; }
