@@ -8769,19 +8769,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\ALEX\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj\\TestProj.csproj",
+      "projectUniqueName": "C:\\Users\\ALEX\\Desktop\\PracticeBackend\\TestProj\\TestProj\\TestProj.csproj",
       "projectName": "TestProj",
-      "projectPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj\\TestProj.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj\\obj\\",
+      "projectPath": "C:\\Users\\ALEX\\Desktop\\PracticeBackend\\TestProj\\TestProj\\TestProj.csproj",
+      "packagesPath": "C:\\Users\\ALEX\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ALEX\\Desktop\\PracticeBackend\\TestProj\\TestProj\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ALEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
