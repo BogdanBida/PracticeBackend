@@ -28,6 +28,7 @@ namespace TestProj
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
 
@@ -75,6 +76,11 @@ namespace TestProj
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder =>
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
 
             app.UseRouting();
 
