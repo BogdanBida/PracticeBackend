@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using TestProj.Models;
+using TestProj.Services;
 
 namespace TestProj
 {
@@ -67,6 +68,8 @@ namespace TestProj
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+            services.AddScoped<IAuthService, AuthService>();
 
         }
 

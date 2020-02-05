@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using TestProj.Models;
+using TestProj.Services;
 
 namespace TestProj.Controllers
 {
@@ -18,32 +10,21 @@ namespace TestProj.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<AppUser> userManager;
-        private readonly SignInManager<AppUser> signInManager;
-        private readonly AppSettings appSettings;
+        private readonly IAuthService authService;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IOptions<AppSettings> appSettings)
+        public AuthController(IAuthService authService)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
-            this.appSettings = appSettings.Value;
+            this.authService = authService;
         }
 
         [HttpPost]
         [Route("Register")]
         //POST: api/Auth/Register
-        public async Task<Object> RegisterUser(RegisterModel model)
+        public async Task<object> RegisterUser(RegisterModel model)
         {
-            var appUser = new AppUser()
-            {
-                UserName = model.UserName,
-                Email = model.Email,
-                FullName = model.FullName
-            };
-
             try
             {
-                var result = await userManager.CreateAsync(appUser, model.Password);
+                var result = await authService.CreateUser(model);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -57,22 +38,10 @@ namespace TestProj.Controllers
         //POST: api/Auth/Login
         public async Task<IActionResult> LoginUser(LoginModel model)
         {
-            var user = await userManager.FindByNameAsync(model.UserName);
-            if(user !=null && await userManager.CheckPasswordAsync(user, model.Password))
+            var user = await authService.FindUser(model);
+            if(await authService.UserExists(model) && await authService.LoginValid(model))
             {
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                        new Claim("Id", user.Id.ToString())
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(appSettings.Jwt_Secret)), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
+                var token = (authService.CreateJwtToken(user));
                 return Ok(new { token });
             }
             else
