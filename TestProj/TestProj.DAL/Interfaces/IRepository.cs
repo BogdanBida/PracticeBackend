@@ -2,7 +2,7 @@
 
 namespace TestProj.DAL.Interfaces
 {
-    interface IRepository<T>
+    public interface IRepository<T>
         where T : class
     {
         T GetItem(int id);

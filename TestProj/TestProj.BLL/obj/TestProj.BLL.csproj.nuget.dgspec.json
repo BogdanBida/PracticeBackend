@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj": {}
+    "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj": {
+    "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj",
         "projectName": "TestProj.BLL",
-        "projectPath": "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj",
-        "packagesPath": "C:\\Users\\ALEX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.BLL\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.BLL\\TestProj.BLL.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.BLL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ALEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj": {
-                "projectPath": "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj"
+              "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj"
               }
             }
           }
@@ -73,20 +70,17 @@
         }
       }
     },
-    "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj": {
+    "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj",
         "projectName": "TestProj.DAL",
-        "projectPath": "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj",
-        "packagesPath": "C:\\Users\\ALEX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ALEX\\Desktop\\broken token\\TestProj\\TestProj.DAL\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.DAL\\TestProj.DAL.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\PracticeBackend\\TestProj\\TestProj.DAL\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ALEX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

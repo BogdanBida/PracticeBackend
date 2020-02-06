@@ -12,6 +12,9 @@ using Microsoft.IdentityModel.Tokens;
 using TestProj.BLL.Services;
 using TestProj.DAL.EF;
 using TestProj.DAL.Entities;
+using TestProj.DAL.Interfaces;
+using TestProj.DAL.Repositories;
+
 
 namespace TestProj
 {
@@ -67,6 +70,7 @@ namespace TestProj
             });
 
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped(typeof(IRepository<Product>), typeof(MsSqlProductRepository));
 
         }
 
