@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TestProj.BLL.Interfaces;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;
 
@@ -11,55 +12,52 @@ namespace TestProj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class ProductController : ControllerBase
     {
-        private readonly IRepository<Product> repo;
+        private readonly IProductService productService;
 
-        public HomeController(IRepository<Product> repo)
+        public ProductController(IProductService productService)
         {
-            this.repo = repo;
+            this.productService = productService;
         }
 
         [HttpGet]
-        //GET: api/Home
+        //GET: api/Product
         public IEnumerable<Product> GetProducts()
         {
-            return repo.GetItemList();
+            return productService.GetAllProducts();
         }
 
         [HttpGet]
         [Route("{id}")]
-        //GET: api/Home/id
+        //GET: api/Product/id
         public Product GetProductDetails(int id)
         {
-
-            var result = repo.GetItem(id);
-            return result;
+            return productService.GetProductById(id);
         }
 
         [HttpPost]
-        //GET: api/Home
+        //GET: api/Product
         public Product CreateProduct(Product model)
         {
-            repo.Create(model);
-            return (model);
+            return productService.AddProduct(model);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        //GET: api/Home/id
+        //GET: api/Product/id
         public Product DeleteProduct(int id)
         {
-            return repo.Delete(id);
+            return productService.DeleteProductById(id);
         }
 
         [HttpPut]
-        //GET: api/Home
+        //GET: api/Product
         public Product UpdateProduct(Product modelChanges)
         {
             try
             {
-                return repo.Update(modelChanges);
+                return productService.ChangeProduct(modelChanges);
             }
             catch(Exception ex)
             {

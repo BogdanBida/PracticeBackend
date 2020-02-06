@@ -1,4 +1,4 @@
-﻿namespace TestProj.BLL.Services
+﻿namespace TestProj.BLL.Constants
 {
     public class AppSettings
     {

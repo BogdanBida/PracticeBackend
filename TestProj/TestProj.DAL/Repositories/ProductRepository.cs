@@ -6,11 +6,11 @@ using TestProj.DAL.Interfaces;
 
 namespace TestProj.DAL.Repositories
 {
-    public class MsSqlProductRepository : IRepository<Product>
+    public class ProductRepository : IRepository<Product>
     {
         private readonly ApplicationContext dbContext;
 
-        public MsSqlProductRepository(ApplicationContext dbContext)
+        public ProductRepository(ApplicationContext dbContext)
         {
             this.dbContext = dbContext;
         }
