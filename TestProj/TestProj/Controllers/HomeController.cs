@@ -21,16 +21,15 @@ namespace TestProj.Controllers
         }
 
         [HttpGet]
-        [Route("ListProducts")]
-        //GET: api/Home/ListProducts
+        //GET: api/Home
         public IEnumerable<Product> GetProducts()
         {
             return repo.GetItemList();
         }
 
         [HttpGet]
-        [Route("ProductDetails/{id}")]
-        //GET: api/Home/ProductDetails/id
+        [Route("{id}")]
+        //GET: api/Home/id
         public Product GetProductDetails(int id)
         {
 
@@ -39,25 +38,23 @@ namespace TestProj.Controllers
         }
 
         [HttpPost]
-        [Route("CreateProduct")]
-        //GET: api/Home/CreateProduct
+        //GET: api/Home
         public Product CreateProduct(Product model)
         {
             repo.Create(model);
             return (model);
         }
 
-        [HttpPost]
-        [Route("DeleteProduct/{id}")]
-        //GET: api/Home/DeleteProdu ct/id
+        [HttpDelete]
+        [Route("{id}")]
+        //GET: api/Home/id
         public Product DeleteProduct(int id)
         {
             return repo.Delete(id);
         }
 
-        [HttpPost]
-        [Route("UpdateProduct")]
-        //GET: api/Home/UpdateProduct
+        [HttpPut]
+        //GET: api/Home
         public Product UpdateProduct(Product modelChanges)
         {
             try
