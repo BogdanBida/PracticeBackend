@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TestProj.Models;
-using TestProj.Services;
+using TestProj.BLL.Models;
+using TestProj.BLL.Services;
 
-namespace TestProj.Controllers
+namespace TestProj.BLL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -38,7 +38,7 @@ namespace TestProj.Controllers
         //POST: api/Auth/Login
         public async Task<IActionResult> LoginUser(LoginModel model)
         {
-            var user = await authService.FindUser(model);
+            var user = await authService.FindUserByName(model);
             if(await authService.UserExists(model) && await authService.LoginValid(model))
             {
                 var token = (authService.CreateJwtToken(user));

@@ -1,0 +1,10 @@
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\bin\Debug\netcoreapp3.1\TestProj.DAL.deps.json
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\bin\Debug\netcoreapp3.1\TestProj.DAL.dll
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\obj\Debug\netcoreapp3.1\TestProj.DAL.csprojAssemblyReference.cache
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\obj\Debug\netcoreapp3.1\TestProj.DAL.AssemblyInfoInputs.cache
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\obj\Debug\netcoreapp3.1\TestProj.DAL.AssemblyInfo.cs
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\bin\Debug\netcoreapp3.1\TestProj.DAL.pdb
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\obj\Debug\netcoreapp3.1\TestProj.DAL.dll
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\obj\Debug\netcoreapp3.1\TestProj.DAL.pdb
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\bin\Debug\netcoreapp3.1\TestProj.DAL.runtimeconfig.json
+C:\Users\ALEX\Desktop\broken token\TestProj\TestProj.DAL\bin\Debug\netcoreapp3.1\TestProj.DAL.runtimeconfig.dev.json
