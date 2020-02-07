@@ -26,3 +26,15 @@ TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.pdb
 TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.assets.cache
 
 TestProj/.vs/TestProj/v15/.suo
+
+TestProj/TestProj.BLL/bin/Debug/netcoreapp3.1/
+
+TestProj/TestProj.BLL/obj/
+
+TestProj/TestProj.DAL/bin/Debug/netcoreapp3.1/
+
+TestProj/TestProj.DAL/obj/
+
+TestProj/TestProj/bin/Debug/netcoreapp3.1/
+
+TestProj/TestProj/obj/
