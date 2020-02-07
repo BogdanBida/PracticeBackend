@@ -14,8 +14,8 @@ namespace TestProj.DAL.Entities
         [Required]
         public OperationType OperationType { get; set; }
         [Required]
-        public int AppUserId { get; set; }
-        public AppUser appUser { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
         [Required]
         [Column(TypeName = "int")]
         public int Amount { get; set; }
