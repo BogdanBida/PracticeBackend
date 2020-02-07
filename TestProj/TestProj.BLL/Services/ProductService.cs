@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
 using TestProj.DAL.Entities;

@@ -75,6 +75,7 @@ namespace TestProj
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped(typeof(IRepository<Product>), typeof(ProductRepository));
+            services.AddScoped(typeof(IRepository<Operation>), typeof(OperationRepository));
 
             services.AddAutoMapper(typeof(ProductMapper).GetTypeInfo().Assembly);
 

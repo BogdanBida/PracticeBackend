@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
-using TestProj.DAL.Entities;
-using TestProj.DAL.Interfaces;
 
 namespace TestProj.Controllers
 {
