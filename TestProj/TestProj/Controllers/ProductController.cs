@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestProj.BLL.Interfaces;
+using TestProj.BLL.Models;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;
 
@@ -23,7 +24,7 @@ namespace TestProj.Controllers
 
         [HttpGet]
         //GET: api/Product
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<ProductDTO> GetProducts()
         {
             return productService.GetAllProducts();
         }
@@ -31,14 +32,14 @@ namespace TestProj.Controllers
         [HttpGet]
         [Route("{id}")]
         //GET: api/Product/id
-        public Product GetProductDetails(int id)
+        public ProductDTO GetProductDetails(int id)
         {
             return productService.GetProductById(id);
         }
 
         [HttpPost]
         //GET: api/Product
-        public Product CreateProduct(Product model)
+        public ProductDTO CreateProduct(ProductDTO model)
         {
             return productService.AddProduct(model);
         }
@@ -46,14 +47,14 @@ namespace TestProj.Controllers
         [HttpDelete]
         [Route("{id}")]
         //GET: api/Product/id
-        public Product DeleteProduct(int id)
+        public ProductDTO DeleteProduct(int id)
         {
             return productService.DeleteProductById(id);
         }
 
         [HttpPut]
         //GET: api/Product
-        public Product UpdateProduct(Product modelChanges)
+        public ProductDTO UpdateProduct(ProductDTO modelChanges)
         {
             try
             {

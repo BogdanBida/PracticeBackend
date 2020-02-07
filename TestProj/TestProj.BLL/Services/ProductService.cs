@@ -1,7 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TestProj.BLL.Interfaces;
+using TestProj.BLL.Models;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;
 
@@ -10,35 +12,43 @@ namespace TestProj.BLL.Services
     public class ProductService : IProductService
     {
         private readonly IRepository<Product> repo;
+        private readonly IMapper mapper;
 
-        public ProductService(IRepository<Product> repo)
+        public ProductService(IRepository<Product> repo, IMapper mapper)
         {
             this.repo = repo;
+            this.mapper = mapper;
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<ProductDTO> GetAllProducts()
         {
-            return repo.GetItemList();
+            var products = repo.GetItemList();
+            return mapper.Map<IEnumerable<ProductDTO>>(products);
         }
 
-        public Product GetProductById(int id)
+        public ProductDTO GetProductById(int id)
         {
-            return repo.GetItem(id);
+            var item = repo.GetItem(id);
+            ProductDTO productDTO =  mapper.Map<ProductDTO>(item);
+            return productDTO;
         }
 
-        public Product AddProduct(Product model)
+        public ProductDTO AddProduct(ProductDTO model)
         {
-            return repo.Create(model);
+            repo.Create(mapper.Map<Product>(model));
+            return model;
         }
 
-        public Product ChangeProduct(Product modelChanges)
+        public ProductDTO ChangeProduct(ProductDTO modelChanges)
         {
-            return repo.Update(modelChanges);
+            repo.Update(mapper.Map<Product>(modelChanges));
+            return modelChanges;
         }
 
-        public Product DeleteProductById(int id)
+        public ProductDTO DeleteProductById(int id)
         {
-            return repo.Delete(id);
+            var item = repo.Delete(id);
+            return mapper.Map<ProductDTO>(item);
         }
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TestProj.BLL.Models;
 using TestProj.DAL.Entities;
 
 namespace TestProj.BLL.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetAllProducts();
-        Product GetProductById(int id);
-        Product AddProduct(Product model);
-        Product DeleteProductById(int id);
-        Product ChangeProduct(Product modelChanges);
+        IEnumerable<ProductDTO> GetAllProducts();
+        ProductDTO GetProductById(int id);
+        ProductDTO AddProduct(ProductDTO model);
+        ProductDTO DeleteProductById(int id);
+        ProductDTO ChangeProduct(ProductDTO modelChanges);
     }
 }

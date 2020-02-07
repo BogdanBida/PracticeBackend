@@ -16,6 +16,8 @@ using TestProj.DAL.EF;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;
 using TestProj.DAL.Repositories;
+using AutoMapper;
+using System.Reflection;
 
 namespace TestProj
 {
@@ -73,6 +75,8 @@ namespace TestProj
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped(typeof(IRepository<Product>), typeof(ProductRepository));
+
+            services.AddAutoMapper(typeof(ProductMapper).GetTypeInfo().Assembly);
 
         }
 
