@@ -27,9 +27,9 @@ namespace TestProj.BLL.Controllers
                 var result = await authService.CreateUser(model);
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                return BadRequest(new { message = "Registration failed." });
             }
         }
 
@@ -46,8 +46,7 @@ namespace TestProj.BLL.Controllers
             }
             else
             {
-                //return new StatusCodeResult(401);
-                return BadRequest(new { message = "Username or password is incorrect." });
+                return Unauthorized(new { message = "Username or password is incorrect." });
             }
         }
     }

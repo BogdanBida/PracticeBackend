@@ -27,9 +27,12 @@ namespace TestProj.Controllers
         [HttpGet]
         [Route("{id}")]
         //GET: api/Product/id
-        public ProductDTO GetProductDetails(int id)
+        public IActionResult GetProductDetails(int id)
         {
-            return productService.GetProductById(id);
+            var item = productService.GetProductById(id);
+            if (item == null)
+                return BadRequest(new { message = "This product doesn't exist." });
+            return Ok(item);
         }
 
         [HttpPost]
@@ -50,22 +53,25 @@ namespace TestProj.Controllers
         [HttpDelete]
         [Route("{id}")]
         //GET: api/Product/id
-        public ProductDTO DeleteProduct(int id)
+        public IActionResult DeleteProduct(int id)
         {
-            return productService.DeleteProductById(id);
+            var item = productService.DeleteProductById(id);
+            if(item == null)
+                return BadRequest(new { message = "This product doesn't exist." });
+            return Ok(item);
         }
 
         [HttpPut]
         //GET: api/Product
-        public ProductDTO UpdateProduct(ProductDTO modelChanges)
+        public IActionResult UpdateProduct(ProductDTO modelChanges)
         {
             try
             {
-                return productService.ChangeProduct(modelChanges);
+                return Ok(productService.ChangeProduct(modelChanges));
             }
-            catch(Exception ex)
+            catch
             {
-                throw (ex);
+                return BadRequest(new { message = "This product doesn't exist." });
             }
         }
     }
