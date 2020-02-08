@@ -34,9 +34,17 @@ namespace TestProj.Controllers
 
         [HttpPost]
         //GET: api/Product
-        public ProductDTO CreateProduct(ProductDTO model)
+        public IActionResult CreateProduct(ProductDTO model)
         {
-            return productService.AddProduct(model);
+            try
+            {
+                var item = productService.AddProduct(model);
+                return Ok(item);
+            }
+            catch
+            {
+                return BadRequest(new { message = "This product cannot be added." });
+            }
         }
 
         [HttpDelete]
