@@ -29,7 +29,7 @@ namespace TestProj.BLL.Controllers
             }
             catch
             {
-                return BadRequest(new { message = "Registration failed." });
+                return BadRequest("Registration failed.");
             }
         }
 
@@ -46,7 +46,7 @@ namespace TestProj.BLL.Controllers
             }
             else
             {
-                return Unauthorized(new { message = "Username or password is incorrect." });
+                return Unauthorized("Username or password is incorrect.");
             }
         }
     }

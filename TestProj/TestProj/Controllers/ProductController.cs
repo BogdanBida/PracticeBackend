@@ -31,7 +31,7 @@ namespace TestProj.Controllers
         {
             var item = productService.GetProductById(id);
             if (item == null)
-                return BadRequest(new { message = "This product doesn't exist." });
+                return BadRequest("This product doesn't exist.");
             return Ok(item);
         }
 
@@ -46,7 +46,7 @@ namespace TestProj.Controllers
             }
             catch
             {
-                return BadRequest(new { message = "This product cannot be added." });
+                return BadRequest("This product cannot be added.");
             }
         }
 
@@ -57,7 +57,7 @@ namespace TestProj.Controllers
         {
             var item = productService.DeleteProductById(id);
             if(item == null)
-                return BadRequest(new { message = "This product doesn't exist." });
+                return BadRequest("This product doesn't exist.");
             return Ok(item);
         }
 
@@ -71,7 +71,7 @@ namespace TestProj.Controllers
             }
             catch
             {
-                return BadRequest(new { message = "This product doesn't exist." });
+                return BadRequest("This product doesn't exist.");
             }
         }
     }
