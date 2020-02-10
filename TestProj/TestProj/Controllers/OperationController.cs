@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
@@ -17,10 +18,11 @@ namespace TestProj.Controllers
             this.operationService = operationService;
         }
         [HttpGet]
-        //GET: api/Operation
-        public IEnumerable<OperationDTO> GetOperations()
+        [Route("{id}")]
+        //GET: api/Operation/id
+        public IEnumerable<OperationDTO> GetOperations(int id)
         {
-            return operationService.GetAllOperations();
+            return operationService.GetAllOperations(id);
         }
         [HttpPost]
         //POST: api/Operation

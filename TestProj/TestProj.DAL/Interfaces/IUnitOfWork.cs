@@ -7,8 +7,8 @@ namespace TestProj.DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Product> ProductRepository { get; }
-        IRepository<Operation> OperationRepository { get; }
+        IProductRepository ProductRepository { get; }
+        IOperationRepository OperationRepository { get; }
         void Save();
     }
 }

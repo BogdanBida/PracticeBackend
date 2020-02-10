@@ -8,8 +8,8 @@ using TestProj.DAL.Repositories;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationContext dbContext;
-    private IRepository<Product> prodsRepo;
-    private IRepository<Operation> opsRepo;
+    private IProductRepository prodsRepo;
+    private IOperationRepository opsRepo;
 
     public UnitOfWork(ApplicationContext dbContext)
     {
@@ -17,7 +17,7 @@ public class UnitOfWork : IUnitOfWork
         dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
     }
 
-    public IRepository<Product> ProductRepository
+    public IProductRepository ProductRepository
     {
         get
         {
@@ -27,7 +27,7 @@ public class UnitOfWork : IUnitOfWork
         }
     }
 
-    public IRepository<Operation> OperationRepository
+    public IOperationRepository OperationRepository
     {
         get
         {

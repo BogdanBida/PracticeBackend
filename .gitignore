@@ -38,3 +38,5 @@ TestProj/TestProj.DAL/obj/
 TestProj/TestProj/bin/Debug/netcoreapp3.1/
 
 TestProj/TestProj/obj/
+
+TestProj/.vs/TestProj/v16/Server/sqlite3/

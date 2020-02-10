@@ -6,7 +6,7 @@ using TestProj.DAL.Interfaces;
 
 namespace TestProj.DAL.Repositories
 {
-    public class ProductRepository : IRepository<Product>
+    public class ProductRepository : IProductRepository
     {
         private readonly ApplicationContext dbContext;
 

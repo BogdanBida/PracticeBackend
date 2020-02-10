@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
 using TestProj.DAL.Entities;
@@ -18,10 +19,10 @@ namespace TestProj.BLL.Services
             this.mapper = mapper;
             this.uow = uow;
         }
-        public IEnumerable<OperationDTO> GetAllOperations()
+        public IEnumerable<OperationDTO> GetAllOperations(int productId)
         {
-            var operations = uow.OperationRepository.GetItemList();
-            return mapper.Map<IEnumerable<OperationDTO>>(operations);
+            IQueryable<Operation> operations = uow.OperationRepository.GetOperations(productId);
+            return mapper.Map<IEnumerable<OperationDTO>>(operations.AsEnumerable());
         }
 
         public OperationDTO AddOperation(OperationDTO model)

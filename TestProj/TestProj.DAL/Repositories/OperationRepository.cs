@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using TestProj.DAL.EF;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;
 
 namespace TestProj.DAL.Repositories
 {
-    public class OperationRepository : IRepository<Operation>
+    public class OperationRepository : IOperationRepository
     {
         private readonly ApplicationContext dbContext;
 
@@ -14,37 +15,16 @@ namespace TestProj.DAL.Repositories
         {
             this.dbContext = dbContext;
         }
-        public Operation GetItem(int id)
-        {
-            return dbContext.Operations.Find(id);
-        }
 
-        public IEnumerable<Operation> GetItemList()
+        public IQueryable<Operation> GetOperations(int id)
         {
-            return dbContext.Operations;
+            return dbContext.Operations.Where(p => p.ProductId == id);
         }
 
         public Operation Create(Operation model)
         {
             dbContext.Operations.Add(model);
             return model;
-        }
-
-        public Operation Delete(int id)
-        {
-            Operation model = GetItem(id);
-            if (model != null)
-            {
-                dbContext.Operations.Remove(model);
-            }
-            return model;
-        }
-
-        public Operation Update(Operation modelChanges)
-        {
-            var model = dbContext.Operations.Attach(modelChanges);
-            model.State = EntityState.Modified;
-            return modelChanges;
         }
     }
 }
