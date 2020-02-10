@@ -4,11 +4,12 @@ using TestProj.DAL.Entities;
 
 namespace TestProj.BLL.Services
 {
-    public class ProductMapper : Profile
+    public class MapperProfile : Profile
     {
-        public ProductMapper()
+        public MapperProfile()
         {
             CreateMap<Product, ProductDTO>().ReverseMap();
+            CreateMap<Operation, OperationDTO>().ReverseMap();
         }
     }
 }

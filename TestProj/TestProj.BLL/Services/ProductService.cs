@@ -9,43 +9,46 @@ namespace TestProj.BLL.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IRepository<Product> repo;
         private readonly IMapper mapper;
+        private readonly IUnitOfWork uow;
 
-        public ProductService(IRepository<Product> repo, IMapper mapper)
+        public ProductService(IMapper mapper, IUnitOfWork uow)
         {
-            this.repo = repo;
             this.mapper = mapper;
+            this.uow = uow;
         }
 
         public IEnumerable<ProductDTO> GetAllProducts()
         {
-            var products = repo.GetItemList();
+            var products = uow.ProductRepository.GetItemList();
             return mapper.Map<IEnumerable<ProductDTO>>(products);
         }
 
         public ProductDTO GetProductById(int id)
         {
-            var item = repo.GetItem(id);
+            var item = uow.ProductRepository.GetItem(id);
             ProductDTO productDTO =  mapper.Map<ProductDTO>(item);
             return productDTO;
         }
 
         public ProductDTO AddProduct(ProductDTO model)
         {
-            repo.Create(mapper.Map<Product>(model));
+            uow.ProductRepository.Create(mapper.Map<Product>(model));
+            uow.Save();
             return model;
         }
 
         public ProductDTO ChangeProduct(ProductDTO modelChanges)
         {
-            repo.Update(mapper.Map<Product>(modelChanges));
+            uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
+            uow.Save();
             return modelChanges;
         }
 
         public ProductDTO DeleteProductById(int id)
         {
-            var item = repo.Delete(id);
+            var item = uow.ProductRepository.Delete(id);
+            uow.Save();
             return mapper.Map<ProductDTO>(item);
         }
     }

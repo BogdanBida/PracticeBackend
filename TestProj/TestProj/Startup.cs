@@ -74,10 +74,12 @@ namespace TestProj
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOperationService, OperationService>();
             services.AddScoped(typeof(IRepository<Product>), typeof(ProductRepository));
             services.AddScoped(typeof(IRepository<Operation>), typeof(OperationRepository));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
-            services.AddAutoMapper(typeof(ProductMapper).GetTypeInfo().Assembly);
+            services.AddAutoMapper(typeof(MapperProfile).GetTypeInfo().Assembly);
 
         }
 

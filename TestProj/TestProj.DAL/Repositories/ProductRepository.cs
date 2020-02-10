@@ -28,7 +28,6 @@ namespace TestProj.DAL.Repositories
         public Product Create(Product model)
         {
             dbContext.Products.Add(model);
-            dbContext.SaveChanges();
             return model;
         }
 
@@ -38,7 +37,6 @@ namespace TestProj.DAL.Repositories
             if (model != null)
             {
                 dbContext.Products.Remove(model);
-                dbContext.SaveChanges();
             }
             return model;
         }
@@ -47,7 +45,6 @@ namespace TestProj.DAL.Repositories
         {
             var model = dbContext.Products.Attach(modelChanges);
             model.State = EntityState.Modified;
-            dbContext.SaveChanges();
             return modelChanges;
         }
     }

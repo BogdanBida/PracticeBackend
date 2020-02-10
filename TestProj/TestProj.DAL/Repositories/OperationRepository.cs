@@ -27,7 +27,6 @@ namespace TestProj.DAL.Repositories
         public Operation Create(Operation model)
         {
             dbContext.Operations.Add(model);
-            dbContext.SaveChanges();
             return model;
         }
 
@@ -37,7 +36,6 @@ namespace TestProj.DAL.Repositories
             if (model != null)
             {
                 dbContext.Operations.Remove(model);
-                dbContext.SaveChanges();
             }
             return model;
         }
@@ -46,7 +44,6 @@ namespace TestProj.DAL.Repositories
         {
             var model = dbContext.Operations.Attach(modelChanges);
             model.State = EntityState.Modified;
-            dbContext.SaveChanges();
             return modelChanges;
         }
     }
