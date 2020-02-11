@@ -33,6 +33,14 @@ namespace TestProj.Controllers
                 var action = operationService.AddOperation(model);
                 return Ok(action);
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                return BadRequest("Amount of products must be:\n - less than or equal to 1.000;\n - greater than 0.");
+            }
+            catch (ArgumentException)
+            {
+                return BadRequest("Amount of product in stock is not enough.");
+            }
             catch
             {
                 return BadRequest("This operation cannot be executed.");

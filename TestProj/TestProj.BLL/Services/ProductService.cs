@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
@@ -33,16 +34,26 @@ namespace TestProj.BLL.Services
 
         public ProductDTO AddProduct(ProductDTO model)
         {
-            uow.ProductRepository.Create(mapper.Map<Product>(model));
-            uow.Save();
-            return model;
+            if(model.Price < 10000)
+            {
+                uow.ProductRepository.Create(mapper.Map<Product>(model));
+                uow.Save();
+                return model;
+            }
+            else
+                throw new ArgumentOutOfRangeException();
         }
 
         public ProductDTO ChangeProduct(ProductDTO modelChanges)
         {
-            uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
-            uow.Save();
-            return modelChanges;
+            if (modelChanges.Price < 10000)
+            {
+                uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
+                uow.Save();
+                return modelChanges;
+            }
+            else
+                throw new ArgumentOutOfRangeException();
         }
 
         public ProductDTO DeleteProductById(int id)

@@ -44,6 +44,10 @@ namespace TestProj.Controllers
                 var item = productService.AddProduct(model);
                 return Ok(item);
             }
+            catch(ArgumentOutOfRangeException)
+            {
+                return BadRequest("Price of the product must be less than 10.000");
+            }
             catch
             {
                 return BadRequest("This product cannot be added.");
@@ -68,6 +72,10 @@ namespace TestProj.Controllers
             try
             {
                 return Ok(productService.ChangeProduct(modelChanges));
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return BadRequest("Price of the product must be less than 10.000");
             }
             catch
             {
