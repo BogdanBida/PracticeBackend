@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TestProj.BLL.Models;
 using TestProj.BLL.Services;
@@ -20,7 +19,7 @@ namespace TestProj.BLL.Controllers
         [HttpPost]
         [Route("Register")]
         //POST: api/Auth/Register
-        public async Task<object> RegisterUser(RegisterModel model)
+        public async Task<IActionResult> RegisterUser(RegisterModel model)
         {
             try
             {
@@ -45,9 +44,7 @@ namespace TestProj.BLL.Controllers
                 return Ok(new { token });
             }
             else
-            {
                 return Unauthorized("Username or password is incorrect.");
-            }
         }
     }
 }

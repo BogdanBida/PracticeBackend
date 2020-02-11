@@ -47,13 +47,9 @@ namespace TestProj.BLL.Services
         public bool ModelValid(OperationDTO model, ProductDTO item)
         {
             if (model.Amount > 1000 || model.Amount <= 0)
-            {
                 throw new ArgumentOutOfRangeException();
-            }
             if (model.OperationType == OperationType.Outcome && item.Count < model.Amount)
-            {
                 throw new ArgumentException();
-            }
             return true;
         }
     }

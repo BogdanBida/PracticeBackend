@@ -24,7 +24,7 @@ namespace TestProj.BLL.Services
         }
 
 
-        public async Task<object> CreateUser(RegisterModel model)
+        public async Task<IdentityResult> CreateUser(RegisterModel model)
         {
             var appUser = new AppUser()
             {
@@ -34,7 +34,7 @@ namespace TestProj.BLL.Services
             };
 
             var result = await userManager.CreateAsync(appUser, model.Password);
-            return (result);
+            return result;
         }
 
         public async Task<AppUser> FindUserByName(LoginModel model)
@@ -44,7 +44,7 @@ namespace TestProj.BLL.Services
 
         public async Task<AppUser> FindUserById(string userId)
         {
-            return (await userManager.FindByIdAsync(userId));
+            return await userManager.FindByIdAsync(userId);
         }
 
         public async Task<bool> UserExists(LoginModel model)
@@ -57,7 +57,7 @@ namespace TestProj.BLL.Services
         public async Task<bool> LoginValid(LoginModel model)
         {
             var user = await FindUserByName(model);
-            return (await userManager.CheckPasswordAsync(user, model.Password));
+            return await userManager.CheckPasswordAsync(user, model.Password);
         }
 
         public string CreateJwtToken(AppUser user)
@@ -75,7 +75,7 @@ namespace TestProj.BLL.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             var token = tokenHandler.WriteToken(securityToken);
-            return (token);
+            return token;
         }
     }
 }

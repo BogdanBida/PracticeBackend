@@ -79,7 +79,7 @@ namespace TestProj.Controllers
             }
             catch
             {
-                return BadRequest("This product doesn't exist.");
+                return BadRequest("Product with this name already exists.");
             }
         }
     }

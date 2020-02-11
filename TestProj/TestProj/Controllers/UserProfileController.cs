@@ -9,7 +9,6 @@ namespace TestProj.BLL.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //GET: /api/UserProfile
     public class UserProfileController : ControllerBase
     {
         private readonly IAuthService authService;
@@ -21,6 +20,7 @@ namespace TestProj.BLL.Controllers
 
         [HttpGet]
         [Authorize]
+        //GET: /api/UserProfile
         public async Task<Object> GetUserProfile()
         {
             string userId = User.Claims.First(c => c.Type == "Id").Value;

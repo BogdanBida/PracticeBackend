@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TestProj.DAL.Entities;
 
 namespace TestProj.DAL.Interfaces
 {

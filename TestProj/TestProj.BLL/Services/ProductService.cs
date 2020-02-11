@@ -28,8 +28,7 @@ namespace TestProj.BLL.Services
         public ProductDTO GetProductById(int id)
         {
             var item = uow.ProductRepository.GetItem(id);
-            ProductDTO productDTO =  mapper.Map<ProductDTO>(item);
-            return productDTO;
+            return mapper.Map<ProductDTO>(item);
         }
 
         public ProductDTO AddProduct(ProductDTO model)
