@@ -18,6 +18,7 @@ using TestProj.DAL.Interfaces;
 using TestProj.DAL.Repositories;
 using AutoMapper;
 using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 namespace TestProj
 {
@@ -81,6 +82,11 @@ namespace TestProj
 
             services.AddAutoMapper(typeof(MapperProfile).GetTypeInfo().Assembly);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product Manager Swagger", Version = "v1" });
+
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -96,6 +102,13 @@ namespace TestProj
             .AllowAnyMethod());
 
             app.UseRouting();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Values Api V1");
+            });
 
             app.UseAuthentication();
 
