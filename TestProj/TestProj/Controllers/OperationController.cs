@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
@@ -9,6 +10,7 @@ namespace TestProj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class OperationController : ControllerBase
     {
         private readonly IOperationService operationService;
