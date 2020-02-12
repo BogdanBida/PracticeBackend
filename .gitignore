@@ -1,42 +1,13 @@
+ProductApp/.vs/
 
-TestProj/.vs/TestProj/v16/.suo
+ProductApp/ProductApp/bin/
 
-TestProj/.vs/TestProj/v16/Server/sqlite3/storage.ide-shm
+ProductApp/ProductApp/obj/
 
-TestProj/.vs/TestProj/v16/Server/sqlite3/storage.ide-wal
+ProductApp/ProductApp.BLL/bin/
 
-TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.csproj.FileListAbsolute.txt
+ProductApp/ProductApp.BLL/obj/
 
-TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.csprojAssemblyReference.cache
+ProductApp/ProductApp.DAL/bin/
 
-TestProj/.vs/TestProj/DesignTimeBuild/.dtbcache
-
-TestProj/.vs/TestProj/v16/Server/sqlite3/storage.ide
-
-TestProj/.vs/TestProj/config/applicationhost.config
-
-TestProj/TestProj/bin/Debug/netcoreapp3.1/TestProj.dll
-
-TestProj/TestProj/bin/Debug/netcoreapp3.1/TestProj.pdb
-
-TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.dll
-
-TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.pdb
-
-TestProj/TestProj/obj/Debug/netcoreapp3.1/TestProj.assets.cache
-
-TestProj/.vs/TestProj/v15/.suo
-
-TestProj/TestProj.BLL/bin/Debug/netcoreapp3.1/
-
-TestProj/TestProj.BLL/obj/
-
-TestProj/TestProj.DAL/bin/Debug/netcoreapp3.1/
-
-TestProj/TestProj.DAL/obj/
-
-TestProj/TestProj/bin/Debug/netcoreapp3.1/
-
-TestProj/TestProj/obj/
-
-TestProj/.vs/
+ProductApp/ProductApp.DAL/obj/
