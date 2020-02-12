@@ -9,7 +9,7 @@ namespace ProductApp.BLL.Interfaces
         IEnumerable<ProductDTO> GetAllProducts();
         Task<ProductDTO> GetProductById(int id);
         Task<ProductDTO> AddProduct(ProductDTO model);
-        void DeleteProductById(int id);
-        ProductDTO ChangeProduct(ProductDTO modelChanges);
+        Task DeleteProductById(int id);
+        Task<ProductDTO> ChangeProduct(ProductDTO modelChanges);
     }
 }

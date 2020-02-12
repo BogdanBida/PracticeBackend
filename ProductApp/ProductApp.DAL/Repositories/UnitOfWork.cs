@@ -2,6 +2,7 @@
 using System;
 using ProductApp.DAL.EF;
 using ProductApp.DAL.Interfaces;
+using System.Threading.Tasks;
 
 namespace ProductApp.DAL.Repositories
 {
@@ -36,9 +37,9 @@ namespace ProductApp.DAL.Repositories
             }
         }
 
-        public void Save()
+        public async Task Save()
         {
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
 
         private bool disposed = false;

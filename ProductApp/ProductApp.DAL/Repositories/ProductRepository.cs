@@ -33,7 +33,7 @@ namespace ProductApp.DAL.Repositories
             return model;
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             Product model = await GetItem(id);
             if (model != null)

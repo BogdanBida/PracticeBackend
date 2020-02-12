@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 using ProductApp.BLL.Interfaces;
 using ProductApp.BLL.Models;
 using ProductApp.DAL.Constants;
@@ -29,19 +30,23 @@ namespace ProductApp.BLL.Services
 
         public async Task<OperationDTO> AddOperation(OperationDTO model)
         {
-            var product = uow.ProductRepository.GetItem(model.ProductId);
-            ProductDTO productDTO = mapper.Map<ProductDTO>(product);
-
-            if(ModelValid(model, productDTO))
+            using (TransactionScope scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             {
-                if (model.OperationType == OperationType.Outcome)
-                    productDTO.Count -= model.Amount;
-                else
-                    productDTO.Count += model.Amount;
+                var product = await uow.ProductRepository.GetItem(model.ProductId);
+                ProductDTO productDTO = mapper.Map<ProductDTO>(product);
 
-                await uow.OperationRepository.Create(mapper.Map<Operation>(model));
-                uow.ProductRepository.Update(mapper.Map<Product>(productDTO));
-                uow.Save();
+                if (ModelValid(model, productDTO))
+                {
+                    if (model.OperationType == OperationType.Outcome)
+                        productDTO.Count -= model.Amount;
+                    else
+                        productDTO.Count += model.Amount;
+
+                    await uow.OperationRepository.Create(mapper.Map<Operation>(model));
+                    uow.ProductRepository.Update(mapper.Map<Product>(productDTO));
+                    await uow.Save();
+                }
+                scope.Complete();
             }
             return model;
         }

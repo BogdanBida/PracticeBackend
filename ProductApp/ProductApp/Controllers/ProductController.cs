@@ -65,11 +65,11 @@ namespace ProductApp.Controllers
         [HttpDelete]
         [Route("{id}")]
         //GET: api/Product/id
-        public IActionResult DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
             try
             {
-                productService.DeleteProductById(id);
+                await productService.DeleteProductById(id);
                 return Ok();
             }
             catch
@@ -80,11 +80,11 @@ namespace ProductApp.Controllers
 
         [HttpPut]
         //GET: api/Product
-        public IActionResult UpdateProduct(ProductDTO modelChanges)
+        public async Task<IActionResult> UpdateProduct(ProductDTO modelChanges)
         {
             try
             {
-                return Ok(productService.ChangeProduct(modelChanges));
+                return Ok(await productService.ChangeProduct(modelChanges));
             }
             catch (ArgumentOutOfRangeException)
             {

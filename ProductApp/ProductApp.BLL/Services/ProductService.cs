@@ -36,22 +36,22 @@ namespace ProductApp.BLL.Services
         {
             model = ValidateModel(model);
             await uow.ProductRepository.Create(mapper.Map<Product>(model));
-            uow.Save();
+            await uow.Save();
             return model;
         }
 
-        public ProductDTO ChangeProduct(ProductDTO modelChanges)
+        public async Task<ProductDTO> ChangeProduct(ProductDTO modelChanges)
         {
             modelChanges = ValidateModel(modelChanges);
             uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
-            uow.Save();
+            await uow.Save();
             return modelChanges;
         }
 
-        public void DeleteProductById(int id)
+        public async Task DeleteProductById(int id)
         {
-            uow.ProductRepository.Delete(id);
-            uow.Save();
+            await uow.ProductRepository.Delete(id);
+            await uow.Save();
         }
 
         public ProductDTO ValidateModel(ProductDTO model)

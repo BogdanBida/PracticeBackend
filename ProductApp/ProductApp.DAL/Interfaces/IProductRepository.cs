@@ -10,6 +10,6 @@ namespace ProductApp.DAL.Interfaces
         IEnumerable<Product> GetItemList();
         Task<Product> Create(Product item);
         Product Update(Product item);
-        void Delete(int id);
+        Task Delete(int id);
     }
 }

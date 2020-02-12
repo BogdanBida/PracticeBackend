@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace ProductApp.DAL.Interfaces
 {
@@ -6,6 +7,6 @@ namespace ProductApp.DAL.Interfaces
     {
         IProductRepository ProductRepository { get; }
         IOperationRepository OperationRepository { get; }
-        void Save();
+        Task Save();
     }
 }
