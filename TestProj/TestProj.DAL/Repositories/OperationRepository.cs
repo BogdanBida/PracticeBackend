@@ -18,7 +18,8 @@ namespace TestProj.DAL.Repositories
 
         public IQueryable<Operation> GetOperations(int id)
         {
-            return dbContext.Operations.Where(p => p.ProductId == id);
+            var operations = dbContext.Operations.Where(p => p.ProductId == id).Include(x => x.AppUser);
+            return operations;
         }
 
         public Operation Create(Operation model)

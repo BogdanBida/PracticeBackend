@@ -32,8 +32,11 @@ namespace TestProj.Controllers
         {
             try
             {
-                var action = operationService.AddOperation(model);
-                return Ok(action);
+                string userId = User.Claims.First(c => c.Type == "Id").Value;
+                model.AppUserId = userId;
+
+                var result = operationService.AddOperation(model);
+                return Ok(result);
             }
             catch (ArgumentOutOfRangeException)
             {

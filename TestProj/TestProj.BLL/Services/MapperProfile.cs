@@ -9,7 +9,9 @@ namespace TestProj.BLL.Services
         public MapperProfile()
         {
             CreateMap<Product, ProductDTO>().ReverseMap();
-            CreateMap<Operation, OperationDTO>().ReverseMap();
+            CreateMap<Operation, OperationDTO>()
+                .ForMember(dest=>dest.AppUserName, opt=> opt.MapFrom(src=>src.AppUser.UserName));
+            CreateMap<OperationDTO,Operation>();
         }
     }
 }
