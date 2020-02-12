@@ -1,5 +1,5 @@
 ﻿using System;
-using TestProj.DAL.Entities;
+using TestProj.DAL.Constants;
 
 namespace TestProj.BLL.Models
 {

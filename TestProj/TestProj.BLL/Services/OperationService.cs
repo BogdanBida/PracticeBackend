@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
+using TestProj.DAL.Constants;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;
 
@@ -25,7 +27,7 @@ namespace TestProj.BLL.Services
             return mapper.Map<IEnumerable<OperationDTO>>(operations.AsEnumerable());
         }
 
-        public OperationDTO AddOperation(OperationDTO model)
+        public async Task<OperationDTO> AddOperation(OperationDTO model)
         {
             var product = uow.ProductRepository.GetItem(model.ProductId);
             ProductDTO productDTO = mapper.Map<ProductDTO>(product);
@@ -37,7 +39,7 @@ namespace TestProj.BLL.Services
                 else
                     productDTO.Count += model.Amount;
 
-                uow.OperationRepository.Create(mapper.Map<Operation>(model));
+                await uow.OperationRepository.Create(mapper.Map<Operation>(model));
                 uow.ProductRepository.Update(mapper.Map<Product>(productDTO));
                 uow.Save();
             }

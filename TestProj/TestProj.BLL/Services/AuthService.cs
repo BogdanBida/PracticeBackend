@@ -24,6 +24,18 @@ namespace TestProj.BLL.Services
         }
 
 
+        public async Task<string> ValidUserLogin(LoginModel model)
+        {
+            var user = await FindUserByName(model);
+            if (await UserExists(model) && await IsLoginValid(model))
+            {
+                var token = CreateJwtToken(user);
+                return token;
+            }
+            else
+                throw new Exception();
+        }
+
         public async Task<IdentityResult> CreateUser(RegisterModel model)
         {
             var appUser = new AppUser()
@@ -33,8 +45,7 @@ namespace TestProj.BLL.Services
                 FullName = model.FullName
             };
 
-            var result = await userManager.CreateAsync(appUser, model.Password);
-            return result;
+            return await userManager.CreateAsync(appUser, model.Password);
         }
 
         public async Task<AppUser> FindUserByName(LoginModel model)
@@ -50,11 +61,9 @@ namespace TestProj.BLL.Services
         public async Task<bool> UserExists(LoginModel model)
         {
             var user = await FindUserByName(model);
-            if (user!=null)
-                return true;
-            return false;
+            return user != null;
         }
-        public async Task<bool> LoginValid(LoginModel model)
+        public async Task<bool> IsLoginValid(LoginModel model)
         {
             var user = await FindUserByName(model);
             return await userManager.CheckPasswordAsync(user, model.Password);

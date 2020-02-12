@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using TestProj.BLL.Services;
 using TestProj.BLL.Constants;
 using TestProj.BLL.Interfaces;
+using TestProj.BLL.Mappings;
 using TestProj.DAL.EF;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TestProj.BLL.Constants;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
 
@@ -29,34 +31,34 @@ namespace TestProj.Controllers
         [HttpGet]
         [Route("{id}")]
         //GET: api/Product/id
-        public IActionResult GetProductDetails(int id)
+        public async Task<IActionResult> GetProductDetails(int id)
         {
-            var item = productService.GetProductById(id);
+            var item = await productService.GetProductById(id);
             if (item == null)
-                return BadRequest("This product doesn't exist.");
+                return BadRequest(ErrorMessages.ProductNotFound);
             return Ok(item);
         }
 
         [HttpPost]
         //GET: api/Product
-        public IActionResult CreateProduct(ProductDTO model)
+        public async Task<IActionResult> CreateProduct(ProductDTO model)
         {
             try
             {
-                var item = productService.AddProduct(model);
+                var item = await productService.AddProduct(model);
                 return Ok(item);
             }
             catch(ArgumentOutOfRangeException)
             {
-                return BadRequest("Price of the product must be less than 10.000");
+                return BadRequest(ErrorMessages.InvalidPrice);
             }
             catch (ArgumentException)
             {
-                return BadRequest("Name of the product must contain less than 50 characters");
+                return BadRequest(ErrorMessages.InvalidProductName);
             }
             catch
             {
-                return BadRequest("This product cannot be added.");
+                return BadRequest(ErrorMessages.ProductAlreadyExists);
             }
         }
 
@@ -65,10 +67,15 @@ namespace TestProj.Controllers
         //GET: api/Product/id
         public IActionResult DeleteProduct(int id)
         {
-            var item = productService.DeleteProductById(id);
-            if(item == null)
-                return BadRequest("This product doesn't exist.");
-            return Ok(item);
+            try
+            {
+                productService.DeleteProductById(id);
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest(ErrorMessages.ProductNotFound);
+            }
         }
 
         [HttpPut]
@@ -81,15 +88,15 @@ namespace TestProj.Controllers
             }
             catch (ArgumentOutOfRangeException)
             {
-                return BadRequest("Price of the product must be less than 10.000");
+                return BadRequest(ErrorMessages.InvalidPrice);
             }
             catch (ArgumentException)
             {
-                return BadRequest("Name of the product must contain less than 50 characters");
+                return BadRequest(ErrorMessages.InvalidProductName);
             }
             catch
             {
-                return BadRequest("Product with this name already exists.");
+                return BadRequest(ErrorMessages.ProductAlreadyExists);
             }
         }
     }

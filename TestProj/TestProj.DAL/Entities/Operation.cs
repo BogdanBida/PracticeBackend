@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TestProj.DAL.Constants;
 
 namespace TestProj.DAL.Entities
 {
@@ -23,11 +24,5 @@ namespace TestProj.DAL.Entities
 
         public Product Product { get; set; }
         public AppUser AppUser { get; set; }
-    }
-
-    public enum OperationType
-    {
-        Income,
-        Outcome
     }
 }

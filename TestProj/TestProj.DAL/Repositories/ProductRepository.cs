@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TestProj.DAL.EF;
 using TestProj.DAL.Entities;
@@ -13,12 +15,11 @@ namespace TestProj.DAL.Repositories
         public ProductRepository(ApplicationContext dbContext)
         {
             this.dbContext = dbContext;
-            dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public Product GetItem(int id)
+        public async Task<Product> GetItem(int id)
         {
-            return dbContext.Products.Find(id);
+            return await dbContext.Products.AsNoTracking().FirstOrDefaultAsync(p=>p.ProductId == id);
         }
 
         public IEnumerable<Product> GetItemList()
@@ -26,20 +27,19 @@ namespace TestProj.DAL.Repositories
             return dbContext.Products;
         }
 
-        public Product Create(Product model)
+        public async Task<Product> Create(Product model)
         {
-            dbContext.Products.Add(model);
+            await dbContext.Products.AddAsync(model);
             return model;
         }
 
-        public Product Delete(int id)
+        public async void Delete(int id)
         {
-            Product model = GetItem(id);
+            Product model = await GetItem(id);
             if (model != null)
             {
                 dbContext.Products.Remove(model);
             }
-            return model;
         }
 
         public Product Update(Product modelChanges)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TestProj.DAL.EF;
 using TestProj.DAL.Entities;
 using TestProj.DAL.Interfaces;
@@ -22,9 +23,9 @@ namespace TestProj.DAL.Repositories
             return operations;
         }
 
-        public Operation Create(Operation model)
+        public async Task<Operation> Create(Operation model)
         {
-            dbContext.Operations.Add(model);
+            await dbContext.Operations.AddAsync(model);
             return model;
         }
     }

@@ -2,7 +2,7 @@
 using TestProj.BLL.Models;
 using TestProj.DAL.Entities;
 
-namespace TestProj.BLL.Services
+namespace TestProj.BLL.Mappings
 {
     public class MapperProfile : Profile
     {

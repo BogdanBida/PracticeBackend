@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TestProj.BLL.Constants;
 using TestProj.BLL.Models;
 using TestProj.BLL.Services;
 
@@ -28,7 +29,7 @@ namespace TestProj.BLL.Controllers
             }
             catch
             {
-                return BadRequest("Registration failed.");
+                return BadRequest(ErrorMessages.RegFail);
             }
         }
 
@@ -37,14 +38,15 @@ namespace TestProj.BLL.Controllers
         //POST: api/Auth/Login
         public async Task<IActionResult> LoginUser(LoginModel model)
         {
-            var user = await authService.FindUserByName(model);
-            if(await authService.UserExists(model) && await authService.LoginValid(model))
+            try
             {
-                var token = authService.CreateJwtToken(user);
+                var token = await authService.ValidUserLogin(model);
                 return Ok(new { token });
             }
-            else
-                return Unauthorized("Username or password is incorrect.");
+            catch
+            {
+                return Unauthorized(ErrorMessages.LoginFail);
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TestProj.BLL.Constants;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
 
@@ -28,27 +30,27 @@ namespace TestProj.Controllers
         }
         [HttpPost]
         //POST: api/Operation
-        public IActionResult AddNewOperation(OperationDTO model)
+        public async Task<IActionResult> AddNewOperation(OperationDTO model)
         {
             try
             {
                 string userId = User.Claims.First(c => c.Type == "Id").Value;
                 model.AppUserId = userId;
 
-                var result = operationService.AddOperation(model);
+                var result = await operationService.AddOperation(model);
                 return Ok(result);
             }
             catch (ArgumentOutOfRangeException)
             {
-                return BadRequest("Amount of products must be:\n - less than or equal to 1.000;\n - greater than 0.");
+                return BadRequest(ErrorMessages.InvalidProductAmount);
             }
             catch (ArgumentException)
             {
-                return BadRequest("Amount of product in stock is not enough.");
+                return BadRequest(ErrorMessages.AmountNotEnough);
             }
             catch
             {
-                return BadRequest("This operation cannot be executed.");
+                return BadRequest(ErrorMessages.InvalidOperation);
             }
         }
     }

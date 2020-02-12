@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TestProj.BLL.Interfaces;
 using TestProj.BLL.Models;
 using TestProj.DAL.Entities;
@@ -25,41 +26,40 @@ namespace TestProj.BLL.Services
             return mapper.Map<IEnumerable<ProductDTO>>(products);
         }
 
-        public ProductDTO GetProductById(int id)
+        public async Task<ProductDTO> GetProductById(int id)
         {
-            var item = uow.ProductRepository.GetItem(id);
+            var item = await uow.ProductRepository.GetItem(id);
             return mapper.Map<ProductDTO>(item);
         }
 
-        public ProductDTO AddProduct(ProductDTO model)
+        public async Task<ProductDTO> AddProduct(ProductDTO model)
         {
-            model = ValidModel(model);
-            uow.ProductRepository.Create(mapper.Map<Product>(model));
+            model = ValidateModel(model);
+            await uow.ProductRepository.Create(mapper.Map<Product>(model));
             uow.Save();
             return model;
         }
 
         public ProductDTO ChangeProduct(ProductDTO modelChanges)
         {
-            modelChanges = ValidModel(modelChanges);
+            modelChanges = ValidateModel(modelChanges);
             uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
             uow.Save();
             return modelChanges;
         }
 
-        public ProductDTO DeleteProductById(int id)
+        public void DeleteProductById(int id)
         {
-            var item = uow.ProductRepository.Delete(id);
+            uow.ProductRepository.Delete(id);
             uow.Save();
-            return mapper.Map<ProductDTO>(item);
         }
 
-        public ProductDTO ValidModel(ProductDTO model)
+        public ProductDTO ValidateModel(ProductDTO model)
         {
             if (model.Name.Length >= 50)
                 throw new ArgumentException();
-            model.Price = Math.Round(model.Price * 100) / 100;
-            if (model.Price >= 10000)
+            model.Price = Math.Round(model.Price, 2, MidpointRounding.AwayFromZero);
+            if (model.Price >= 10000 || model.Price <= 0)
                 throw new ArgumentOutOfRangeException();
             return model;
         }
