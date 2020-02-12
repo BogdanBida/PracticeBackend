@@ -56,7 +56,7 @@ namespace ProductApp.BLL.Services
 
         public ProductDTO ValidateModel(ProductDTO model)
         {
-            if (model.Name.Length >= 50)
+            if (model.Name.Length >= 50 || model.Name.Length == 0)
                 throw new ArgumentException();
             model.Price = Math.Round(model.Price, 2, MidpointRounding.AwayFromZero);
             if (model.Price >= 10000 || model.Price <= 0)
