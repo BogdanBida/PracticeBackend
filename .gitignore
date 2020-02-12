@@ -11,3 +11,5 @@ ProductApp/ProductApp.BLL/obj/
 ProductApp/ProductApp.DAL/bin/
 
 ProductApp/ProductApp.DAL/obj/
+
+ProductApp/ProductApp/appsettings.json
