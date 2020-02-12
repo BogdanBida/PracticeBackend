@@ -33,6 +33,7 @@ namespace TestProj.BLL.Services
 
         public ProductDTO AddProduct(ProductDTO model)
         {
+            model.Price = Math.Round(model.Price * 100)/100;
             if(model.Price < 10000)
             {
                 uow.ProductRepository.Create(mapper.Map<Product>(model));
@@ -45,6 +46,7 @@ namespace TestProj.BLL.Services
 
         public ProductDTO ChangeProduct(ProductDTO modelChanges)
         {
+            modelChanges.Price = Math.Round(modelChanges.Price * 100) / 100;
             if (modelChanges.Price < 10000)
             {
                 uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
