@@ -33,28 +33,18 @@ namespace TestProj.BLL.Services
 
         public ProductDTO AddProduct(ProductDTO model)
         {
-            model.Price = Math.Round(model.Price * 100)/100;
-            if(model.Price < 10000)
-            {
-                uow.ProductRepository.Create(mapper.Map<Product>(model));
-                uow.Save();
-                return model;
-            }
-            else
-                throw new ArgumentOutOfRangeException();
+            model = ValidModel(model);
+            uow.ProductRepository.Create(mapper.Map<Product>(model));
+            uow.Save();
+            return model;
         }
 
         public ProductDTO ChangeProduct(ProductDTO modelChanges)
         {
-            modelChanges.Price = Math.Round(modelChanges.Price * 100) / 100;
-            if (modelChanges.Price < 10000)
-            {
-                uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
-                uow.Save();
-                return modelChanges;
-            }
-            else
-                throw new ArgumentOutOfRangeException();
+            modelChanges = ValidModel(modelChanges);
+            uow.ProductRepository.Update(mapper.Map<Product>(modelChanges));
+            uow.Save();
+            return modelChanges;
         }
 
         public ProductDTO DeleteProductById(int id)
@@ -62,6 +52,16 @@ namespace TestProj.BLL.Services
             var item = uow.ProductRepository.Delete(id);
             uow.Save();
             return mapper.Map<ProductDTO>(item);
+        }
+
+        public ProductDTO ValidModel(ProductDTO model)
+        {
+            if (model.Name.Length >= 50)
+                throw new ArgumentException();
+            model.Price = Math.Round(model.Price * 100) / 100;
+            if (model.Price >= 10000)
+                throw new ArgumentOutOfRangeException();
+            return model;
         }
     }
 }

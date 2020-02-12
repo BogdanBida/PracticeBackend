@@ -50,6 +50,10 @@ namespace TestProj.Controllers
             {
                 return BadRequest("Price of the product must be less than 10.000");
             }
+            catch (ArgumentException)
+            {
+                return BadRequest("Name of the product must contain less than 50 characters");
+            }
             catch
             {
                 return BadRequest("This product cannot be added.");
@@ -78,6 +82,10 @@ namespace TestProj.Controllers
             catch (ArgumentOutOfRangeException)
             {
                 return BadRequest("Price of the product must be less than 10.000");
+            }
+            catch (ArgumentException)
+            {
+                return BadRequest("Name of the product must contain less than 50 characters");
             }
             catch
             {
