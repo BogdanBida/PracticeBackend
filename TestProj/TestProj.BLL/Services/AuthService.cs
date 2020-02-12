@@ -39,7 +39,7 @@ namespace TestProj.BLL.Services
 
         public async Task<AppUser> FindUserByName(LoginModel model)
         {
-            return(await userManager.FindByNameAsync(model.UserName));
+            return await userManager.FindByNameAsync(model.UserName);
         }
 
         public async Task<AppUser> FindUserById(string userId)

@@ -10,18 +10,19 @@ namespace TestProj.DAL.Entities
         public int Id { get; set; }
         [Required]
         public int ProductId { get; set; }
-        public Product Product { get; set; }
         [Required]
         public OperationType OperationType { get; set; }
         [Required]
         public string AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
         [Required]
         [Column(TypeName = "int")]
         public int Amount { get; set; }
         [Required]
         [Column(TypeName = "datetime")]
         public DateTime DateTime { get; set; }
+
+        public Product Product { get; set; }
+        public AppUser AppUser { get; set; }
     }
 
     public enum OperationType

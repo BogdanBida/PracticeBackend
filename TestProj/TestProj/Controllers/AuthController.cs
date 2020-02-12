@@ -40,7 +40,7 @@ namespace TestProj.BLL.Controllers
             var user = await authService.FindUserByName(model);
             if(await authService.UserExists(model) && await authService.LoginValid(model))
             {
-                var token = (authService.CreateJwtToken(user));
+                var token = authService.CreateJwtToken(user);
                 return Ok(new { token });
             }
             else
