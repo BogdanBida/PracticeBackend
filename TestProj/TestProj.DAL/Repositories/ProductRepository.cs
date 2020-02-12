@@ -13,6 +13,7 @@ namespace TestProj.DAL.Repositories
         public ProductRepository(ApplicationContext dbContext)
         {
             this.dbContext = dbContext;
+            dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public Product GetItem(int id)

@@ -14,7 +14,6 @@ namespace TestProj.DAL.Repositories
         public UnitOfWork(ApplicationContext dbContext)
         {
             this.dbContext = dbContext;
-            dbContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public IProductRepository ProductRepository
