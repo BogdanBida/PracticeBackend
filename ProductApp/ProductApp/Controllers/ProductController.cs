@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProductApp.BLL.Constants;
 using ProductApp.BLL.Interfaces;
 using ProductApp.BLL.Models;
+using ProductApp.DAL.Paging;
 
 namespace ProductApp.Controllers
 {
@@ -23,9 +24,9 @@ namespace ProductApp.Controllers
 
         [HttpGet]
         //GET: api/Product
-        public IEnumerable<ProductDTO> GetProducts()
+        public IActionResult GetProducts(ProductPagingParams pagingParams)
         {
-            return productService.GetAllProducts();
+            return Ok(productService.GetAllProducts(pagingParams));
         }
 
         [HttpGet]

@@ -6,6 +6,7 @@ using ProductApp.BLL.Interfaces;
 using ProductApp.BLL.Models;
 using ProductApp.DAL.Entities;
 using ProductApp.DAL.Interfaces;
+using ProductApp.DAL.Paging;
 
 namespace ProductApp.BLL.Services
 {
@@ -20,9 +21,9 @@ namespace ProductApp.BLL.Services
             this.uow = uow;
         }
 
-        public IEnumerable<ProductDTO> GetAllProducts()
+        public IEnumerable<ProductDTO> GetAllProducts(ProductPagingParams pagingParams)
         {
-            var products = uow.ProductRepository.GetItemList();
+            var products = uow.ProductRepository.GetItemsSegment(pagingParams);
             return mapper.Map<IEnumerable<ProductDTO>>(products);
         }
 

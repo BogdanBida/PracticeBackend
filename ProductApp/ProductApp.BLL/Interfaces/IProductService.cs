@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProductApp.BLL.Models;
+using ProductApp.DAL.Paging;
 
 namespace ProductApp.BLL.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<ProductDTO> GetAllProducts();
+        IEnumerable<ProductDTO> GetAllProducts(ProductPagingParams pagingParams);
         Task<ProductDTO> GetProductById(int id);
         Task<ProductDTO> AddProduct(ProductDTO model);
         Task DeleteProductById(int id);
