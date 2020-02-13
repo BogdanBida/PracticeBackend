@@ -37,8 +37,8 @@ namespace ProductApp.Controllers
                 string userId = User.Claims.First(c => c.Type == "Id").Value;
                 model.UserId = userId;
 
-                var result = await operationService.AddOperation(model);
-                return Ok(result);
+                await operationService.AddOperation(model);
+                return Ok();
             }
             catch (ArgumentOutOfRangeException)
             {

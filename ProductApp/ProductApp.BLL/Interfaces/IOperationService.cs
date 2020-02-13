@@ -8,6 +8,6 @@ namespace ProductApp.BLL.Interfaces
     public interface IOperationService
     {
         IEnumerable<OperationDTO> GetAllOperations(int id);
-        Task<OperationDTO> AddOperation(OperationDTO model);
+        Task AddOperation(OperationDTO model);
     }
 }
