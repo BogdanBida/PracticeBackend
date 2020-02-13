@@ -21,6 +21,8 @@
     <Compile Remove="Migrations\20200208171911_ProductNameUnique.Designer.cs" />
     <Compile Remove="Migrations\20200210210558_test.cs" />
     <Compile Remove="Migrations\20200210210558_test.Designer.cs" />
+    <Compile Remove="Migrations\20200213092712_ProductId_Rename.cs" />
+    <Compile Remove="Migrations\20200213092712_ProductId_Rename.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

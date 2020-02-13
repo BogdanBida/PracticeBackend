@@ -23,19 +23,6 @@ namespace ProductApp.BLL.Services
             this.appSettings = appSettings.Value;
         }
 
-
-        public async Task<string> ValidUserLogin(LoginModel model)
-        {
-            var user = await FindUserByName(model);
-            if (await UserExists(model) && await IsLoginValid(model))
-            {
-                var token = CreateJwtToken(user);
-                return token;
-            }
-            else
-                throw new Exception();
-        }
-
         public async Task<IdentityResult> CreateUser(RegisterModel model)
         {
             var appUser = new AppUser()
@@ -69,22 +56,28 @@ namespace ProductApp.BLL.Services
             return await userManager.CheckPasswordAsync(user, model.Password);
         }
 
-        public string CreateJwtToken(AppUser user)
+        public async Task<string> CreateJwtToken(LoginModel model)
         {
-            var tokenDescriptor = new SecurityTokenDescriptor
+            var user = await FindUserByName(model);
+            if (await UserExists(model) && await IsLoginValid(model))
             {
-                Subject = new ClaimsIdentity(new Claim[]
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
                     {
                         new Claim("Id", user.Id.ToString())
                     }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(appSettings.Jwt_Secret)), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-            var token = tokenHandler.WriteToken(securityToken);
-            return token;
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(appSettings.Jwt_Secret)), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                var token = tokenHandler.WriteToken(securityToken);
+                return token;
+            }
+            else
+                throw new ArgumentException();
         }
     }
 }

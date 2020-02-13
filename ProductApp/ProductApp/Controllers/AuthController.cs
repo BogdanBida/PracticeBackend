@@ -40,7 +40,7 @@ namespace ProductApp.BLL.Controllers
         {
             try
             {
-                var token = await authService.ValidUserLogin(model);
+                var token = await authService.CreateJwtToken(model);
                 return Ok(new { token });
             }
             catch

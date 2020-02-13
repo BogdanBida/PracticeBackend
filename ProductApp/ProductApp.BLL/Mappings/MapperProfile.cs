@@ -10,8 +10,9 @@ namespace ProductApp.BLL.Mappings
         {
             CreateMap<Product, ProductDTO>().ReverseMap();
             CreateMap<Operation, OperationDTO>()
-                .ForMember(dest=>dest.AppUserName, opt=> opt.MapFrom(src=>src.AppUser.UserName));
-            CreateMap<OperationDTO,Operation>();
+                .ForMember(dest=>dest.UserName, opt=> opt.MapFrom(src=>src.AppUser.UserName));
+            CreateMap<OperationDTO,Operation>()
+                .ForMember(dest => dest.AppUserId, opt => opt.MapFrom(src => src.UserId));
         }
     }
 }

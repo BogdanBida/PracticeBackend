@@ -35,7 +35,7 @@ namespace ProductApp.Controllers
             try
             {
                 string userId = User.Claims.First(c => c.Type == "Id").Value;
-                model.AppUserId = userId;
+                model.UserId = userId;
 
                 var result = await operationService.AddOperation(model);
                 return Ok(result);

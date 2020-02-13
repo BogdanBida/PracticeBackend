@@ -35,29 +35,27 @@ namespace ProductApp.BLL.Services
                 var product = await uow.ProductRepository.GetItem(model.ProductId);
                 ProductDTO productDTO = mapper.Map<ProductDTO>(product);
 
-                if (ModelValid(model, productDTO))
-                {
-                    if (model.OperationType == OperationType.Outcome)
-                        productDTO.Count -= model.Amount;
-                    else
-                        productDTO.Count += model.Amount;
+                CheckModelValidation(model, productDTO);
 
-                    await uow.OperationRepository.Create(mapper.Map<Operation>(model));
-                    uow.ProductRepository.Update(mapper.Map<Product>(productDTO));
-                    await uow.Save();
-                }
+                if (model.OperationType == OperationType.Outcome)
+                    productDTO.Count -= model.Amount;
+                else
+                    productDTO.Count += model.Amount;
+
+                await uow.OperationRepository.Create(mapper.Map<Operation>(model));
+                uow.ProductRepository.Update(mapper.Map<Product>(productDTO));
+                await uow.Save();
                 scope.Complete();
             }
             return model;
         }
 
-        public bool ModelValid(OperationDTO model, ProductDTO item)
+        public void CheckModelValidation(OperationDTO model, ProductDTO item)
         {
             if (model.Amount > 1000 || model.Amount <= 0)
                 throw new ArgumentOutOfRangeException();
             if (model.OperationType == OperationType.Outcome && item.Count < model.Amount)
                 throw new ArgumentException();
-            return true;
         }
     }
 }
