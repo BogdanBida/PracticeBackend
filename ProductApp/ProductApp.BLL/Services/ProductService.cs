@@ -7,6 +7,8 @@ using ProductApp.BLL.Models;
 using ProductApp.DAL.Entities;
 using ProductApp.DAL.Interfaces;
 using ProductApp.DAL.Paging;
+using System.Linq;
+using ProductApp.DAL.Constants;
 
 namespace ProductApp.BLL.Services
 {
@@ -21,10 +23,36 @@ namespace ProductApp.BLL.Services
             this.uow = uow;
         }
 
-        public IEnumerable<ProductDTO> GetAllProducts(ProductPagingParams pagingParams)
+        public PagedList<ProductDTO> GetProductsSegment(ProductPagingParams pagingParams)
         {
-            var products = uow.ProductRepository.GetItemsSegment(pagingParams);
-            return mapper.Map<IEnumerable<ProductDTO>>(products);
+            IQueryable<Product> products = uow.ProductRepository.GetAllItems();
+
+            products = SortProducts(products, pagingParams);
+
+            IEnumerable<ProductDTO> productsDTO = mapper.Map<IEnumerable<ProductDTO>>(products.AsEnumerable());
+
+            return PagedList<ProductDTO>.ToPagedList(productsDTO,
+                pagingParams.PageNumber, pagingParams.PageSize);
+        }
+
+        public IQueryable<Product> SortProducts(IQueryable<Product> products, ProductPagingParams pagingParams)
+        {
+            switch (pagingParams.SortOrder)
+            {
+                case SortState.NameDesc:
+                    products = products.OrderByDescending(s => s.Name);
+                    break;
+                case SortState.PriceAsc:
+                    products = products.OrderBy(s => s.Price);
+                    break;
+                case SortState.PriceDesc:
+                    products = products.OrderByDescending(s => s.Price);
+                    break;
+                default:
+                    products = products.OrderBy(s => s.Name);
+                    break;
+            }
+            return products;
         }
 
         public async Task<ProductDTO> GetProductById(int id)

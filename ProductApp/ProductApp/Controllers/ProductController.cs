@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ProductApp.BLL.Constants;
 using ProductApp.BLL.Interfaces;
 using ProductApp.BLL.Models;
@@ -26,7 +27,19 @@ namespace ProductApp.Controllers
         //GET: api/Product
         public IActionResult GetProducts(ProductPagingParams pagingParams)
         {
-            return Ok(productService.GetAllProducts(pagingParams));
+            var products = productService.GetProductsSegment(pagingParams);
+
+            var metadata = new
+            {
+                products.TotalCount,
+                products.PageSize,
+                products.PageNumber,
+                products.TotalPages,
+                products.HasNext,
+                products.HasPrevious
+            };
+            Response.Headers.Add("Pagination", JsonConvert.SerializeObject(metadata));
+            return Ok(products);
         }
 
         [HttpGet]
@@ -49,7 +62,7 @@ namespace ProductApp.Controllers
                 var item = await productService.AddProduct(model);
                 return Ok(item);
             }
-            catch(ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException)
             {
                 return BadRequest(ErrorMessages.InvalidPrice);
             }

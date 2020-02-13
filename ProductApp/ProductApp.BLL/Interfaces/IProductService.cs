@@ -7,7 +7,7 @@ namespace ProductApp.BLL.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<ProductDTO> GetAllProducts(ProductPagingParams pagingParams);
+        PagedList<ProductDTO> GetProductsSegment(ProductPagingParams pagingParams);
         Task<ProductDTO> GetProductById(int id);
         Task<ProductDTO> AddProduct(ProductDTO model);
         Task DeleteProductById(int id);
