@@ -14,12 +14,12 @@ namespace ProductApp.DAL.Paging
 		public bool HasPrevious => PageNumber > 1;
 		public bool HasNext => PageNumber < TotalPages;
 
-		public PagedList(List<T> items, int count, int pageNumber, int pageSize)
+		public PagedList(List<T> items, int count, int pageNumber, int pageSize, int totalPages)
 		{
 			TotalCount = count;
 			PageSize = pageSize;
 			PageNumber = pageNumber;
-			TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+			TotalPages = totalPages;
 
 			AddRange(items);
 		}
@@ -27,9 +27,13 @@ namespace ProductApp.DAL.Paging
 		public static PagedList<T> ToPagedList(IEnumerable<T> source, int pageNumber, int pageSize)
 		{
 			var count = source.Count();
+			var totalPages = (int)Math.Ceiling(count / (double)pageSize);
+			if (pageNumber > totalPages)
+				pageNumber = totalPages;
+
 			var items = source.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
-			return new PagedList<T>(items, count, pageNumber, pageSize);
+			return new PagedList<T>(items, count, pageNumber, pageSize, totalPages);
 		}
 	}
 }

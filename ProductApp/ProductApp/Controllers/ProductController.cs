@@ -25,7 +25,7 @@ namespace ProductApp.Controllers
 
         [HttpGet]
         //GET: api/Product
-        public IActionResult GetProducts(ProductPagingParams pagingParams)
+        public IActionResult GetProducts([FromQuery]ProductPagingParams pagingParams)
         {
             var products = productService.GetProductsSegment(pagingParams);
 
@@ -36,7 +36,8 @@ namespace ProductApp.Controllers
                 products.PageNumber,
                 products.TotalPages,
                 products.HasNext,
-                products.HasPrevious
+                products.HasPrevious,
+                pagingParams.SortOrder
             };
             Response.Headers.Add("Pagination", JsonConvert.SerializeObject(metadata));
             return Ok(products);

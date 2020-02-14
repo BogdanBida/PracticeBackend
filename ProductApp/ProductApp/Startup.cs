@@ -100,7 +100,8 @@ namespace ProductApp
             app.UseCors(builder =>
             builder.WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
-            .AllowAnyMethod());
+            .AllowAnyMethod()
+            .WithExposedHeaders("Pagination"));
 
             app.UseRouting();
 
