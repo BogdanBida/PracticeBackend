@@ -20,6 +20,7 @@ using ProductApp.DAL.Repositories;
 using AutoMapper;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+using ProductApp.BLL.Models;
 
 namespace ProductApp
 {
@@ -77,6 +78,7 @@ namespace ProductApp
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IOperationService, OperationService>();
+            services.AddScoped<IPagingService<ProductDTO>, PagingService<ProductDTO>>();
             services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
             services.AddScoped(typeof(IOperationRepository), typeof(OperationRepository));
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));

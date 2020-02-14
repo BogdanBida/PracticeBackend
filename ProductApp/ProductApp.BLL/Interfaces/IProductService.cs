@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using ProductApp.BLL.Models;
-using ProductApp.DAL.Paging;
 
 namespace ProductApp.BLL.Interfaces
 {

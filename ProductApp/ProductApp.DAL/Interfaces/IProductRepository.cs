@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProductApp.DAL.Entities;
-using ProductApp.DAL.Paging;
 
 namespace ProductApp.DAL.Interfaces
 {

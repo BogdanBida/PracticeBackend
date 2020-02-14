@@ -1,6 +1,6 @@
 ﻿using ProductApp.DAL.Constants;
 
-namespace ProductApp.DAL.Paging
+namespace ProductApp.BLL.Models
 {
     public class ProductPagingParams
     {

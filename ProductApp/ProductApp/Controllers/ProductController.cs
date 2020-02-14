@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +6,6 @@ using Newtonsoft.Json;
 using ProductApp.BLL.Constants;
 using ProductApp.BLL.Interfaces;
 using ProductApp.BLL.Models;
-using ProductApp.DAL.Paging;
 
 namespace ProductApp.Controllers
 {

@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using ProductApp.DAL.EF;
 using ProductApp.DAL.Interfaces;
-using System.Threading.Tasks;
 
 namespace ProductApp.DAL.Repositories
 {

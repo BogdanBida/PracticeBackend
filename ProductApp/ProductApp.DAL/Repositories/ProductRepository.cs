@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using ProductApp.DAL.Constants;
 using ProductApp.DAL.EF;
 using ProductApp.DAL.Entities;
 using ProductApp.DAL.Interfaces;
-using ProductApp.DAL.Paging;
 
 namespace ProductApp.DAL.Repositories
 {

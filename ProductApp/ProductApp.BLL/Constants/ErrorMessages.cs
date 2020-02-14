@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProductApp.BLL.Constants
+﻿namespace ProductApp.BLL.Constants
 {
     public static class ErrorMessages
     {

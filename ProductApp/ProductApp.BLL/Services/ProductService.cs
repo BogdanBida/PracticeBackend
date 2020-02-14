@@ -2,12 +2,11 @@ using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using ProductApp.BLL.Interfaces;
 using ProductApp.BLL.Models;
 using ProductApp.DAL.Entities;
 using ProductApp.DAL.Interfaces;
-using ProductApp.DAL.Paging;
-using System.Linq;
 using ProductApp.DAL.Constants;
 
 namespace ProductApp.BLL.Services
@@ -16,11 +15,13 @@ namespace ProductApp.BLL.Services
     {
         private readonly IMapper mapper;
         private readonly IUnitOfWork uow;
+        private readonly IPagingService<ProductDTO> pagingService;
 
-        public ProductService(IMapper mapper, IUnitOfWork uow)
+        public ProductService(IMapper mapper, IUnitOfWork uow, IPagingService<ProductDTO> pagingService)
         {
             this.mapper = mapper;
             this.uow = uow;
+            this.pagingService = pagingService;
         }
 
         public PagedList<ProductDTO> GetProductsSegment(ProductPagingParams pagingParams)
@@ -31,7 +32,7 @@ namespace ProductApp.BLL.Services
 
             IEnumerable<ProductDTO> productsDTO = mapper.Map<IEnumerable<ProductDTO>>(products.AsEnumerable());
 
-            return PagedList<ProductDTO>.ToPagedList(productsDTO,
+            return pagingService.ToPagedList(productsDTO,
                 pagingParams.PageNumber, pagingParams.PageSize);
         }
 
