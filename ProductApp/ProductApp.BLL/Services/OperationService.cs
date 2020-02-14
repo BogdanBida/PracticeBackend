@@ -9,6 +9,7 @@ using ProductApp.BLL.Models;
 using ProductApp.DAL.Constants;
 using ProductApp.DAL.Entities;
 using ProductApp.DAL.Interfaces;
+using ProductApp.BLL.Constants;
 
 namespace ProductApp.BLL.Services
 {
@@ -22,9 +23,11 @@ namespace ProductApp.BLL.Services
             this.mapper = mapper;
             this.uow = uow;
         }
-        public IEnumerable<OperationDTO> GetAllOperations(int productId)
+        public IEnumerable<OperationDTO> GetAllOperations(int productId, SortOperationState sortOrder)
         {
             IQueryable<Operation> operations = uow.OperationRepository.GetOperations(productId);
+            operations = SortOperations(operations, sortOrder);
+
             return mapper.Map<IEnumerable<OperationDTO>>(operations.AsEnumerable());
         }
 
@@ -55,6 +58,38 @@ namespace ProductApp.BLL.Services
                 throw new ArgumentOutOfRangeException();
             if (model.OperationType == OperationType.Outcome && item.Count < model.Amount)
                 throw new ArgumentException();
+        }
+
+        public IQueryable<Operation> SortOperations(IQueryable<Operation> operations, SortOperationState sortOrder)
+        {
+            switch (sortOrder)
+            {
+                case SortOperationState.UserAsc:
+                    operations = operations.OrderBy(s => s.AppUser.UserName);
+                    break;
+                case SortOperationState.UserDesc:
+                    operations = operations.OrderByDescending(s => s.AppUser.UserName);
+                    break;
+                case SortOperationState.TypeAsc:
+                    operations = operations.OrderBy(s => s.OperationType);
+                    break;
+                case SortOperationState.TypeDesc:
+                    operations = operations.OrderByDescending(s => s.OperationType);
+                    break;
+                case SortOperationState.AmountAsc:
+                    operations = operations.OrderBy(s => s.Amount);
+                    break;
+                case SortOperationState.AmountDesc:
+                    operations = operations.OrderByDescending(s => s.Amount);
+                    break;
+                case SortOperationState.DateAsc:
+                    operations = operations.OrderBy(s => s.DateTime);
+                    break;
+                default:
+                    operations = operations.OrderByDescending(s => s.DateTime);
+                    break;
+            }
+            return operations;
         }
     }
 }

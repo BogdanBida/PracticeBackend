@@ -1,6 +1,6 @@
-﻿namespace ProductApp.DAL.Constants
+﻿namespace ProductApp.BLL.Constants
 {
-    public enum SortState
+    public enum SortProductState
     {
         NameAsc,
         NameDesc,

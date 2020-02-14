@@ -24,9 +24,9 @@ namespace ProductApp.Controllers
         [HttpGet]
         [Route("{id}")]
         //GET: api/Operation/id
-        public IEnumerable<OperationDTO> GetOperations(int id)
+        public IEnumerable<OperationDTO> GetOperations(int id, [FromQuery]SortOperationState sortOrder)
         {
-            return operationService.GetAllOperations(id);
+            return operationService.GetAllOperations(id, sortOrder);
         }
         [HttpPost]
         //POST: api/Operation

@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using ProductApp.BLL.Constants;
 using ProductApp.BLL.Interfaces;
 using ProductApp.BLL.Models;
 using ProductApp.DAL.Entities;
 using ProductApp.DAL.Interfaces;
-using ProductApp.DAL.Constants;
 
 namespace ProductApp.BLL.Services
 {
@@ -40,13 +40,13 @@ namespace ProductApp.BLL.Services
         {
             switch (pagingParams.SortOrder)
             {
-                case SortState.NameDesc:
+                case SortProductState.NameDesc:
                     products = products.OrderByDescending(s => s.Name);
                     break;
-                case SortState.PriceAsc:
+                case SortProductState.PriceAsc:
                     products = products.OrderBy(s => s.Price);
                     break;
-                case SortState.PriceDesc:
+                case SortProductState.PriceDesc:
                     products = products.OrderByDescending(s => s.Price);
                     break;
                 default:
